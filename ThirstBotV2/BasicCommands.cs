@@ -6,12 +6,17 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using ThirstBotV2.Core.UserProfiles;
 
 
 namespace ThirstBotV2
 {
     public class BasicCommands : ModuleBase<SocketCommandContext>
-    {
+    { 
+        private LinksAction linkact = new LinksAction();
+        private List<LinksAction> sorted;
+        private Random rand;
+
         [Command("userinfo")]
         [Summary
    ("Returns info about the current user, or the user parameter, if one passed.")]
@@ -39,35 +44,7 @@ namespace ThirstBotV2
             await Context.Channel.SendMessageAsync("", false, builder.Build());
             await Task.Delay(1);
         }
-        [Command("cck")]
-        [RequireOwner]
-        public async Task csk()
-        {
-            var guild = Context.Guild as IGuild;
-            var users = await guild.GetUsersAsync();
-
-            foreach (var user in users)
-            {
-                var u = user as IGuildUser;
-                var roles = u.RoleIds;
-                ulong underage = 601919400924282882;
-                var rlunderage = Context.Guild.Roles.FirstOrDefault(x => x.Name == "-18");
-
-                if (!u.IsBot && !u.IsWebhook)
-                {
-                    try
-                    {   if (roles.Contains(underage))
-                        {
-                            await user.BanAsync();
-                        }
-                        
-                    }
-                    catch (Exception e)
-                    {
-                    }
-                }
-            }
-        }
+        
         [Command("Ad")]
         public async Task Advert()
         {
@@ -111,6 +88,121 @@ Whether you are looking for a place to make friends or just looking to thirst ov
 
 
             await Context.Channel.SendMessageAsync(embed: embed.Build());
+        }
+        [Command("hugadd")]
+    [RequireOwner]
+    public async Task addedHug(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.huglinks, UserAccount.hugfile);
+    }
+
+    [Command("fa")]
+    [RequireOwner]
+    public async Task addedfyuck(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.fucklinks, UserAccount.fuckfile);
+    }
+
+    [Command("ka")]
+    [RequireOwner]
+    public async Task addkiss(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.kisslinks, UserAccount.kissfile);
+    }
+
+    [Command("pa")]
+    [RequireOwner]
+    public async Task addp(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.patlinks, UserAccount.patfile);
+    }
+
+    [Command("fea")]
+    [RequireOwner]
+    public async Task feeda(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.feedlinks, UserAccount.feedfile);
+    }
+
+    [Command("succa")]
+    [RequireOwner]
+    public async Task succa(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.succlinks, UserAccount.succfile);
+    }
+
+    [Command("ca")]
+    [RequireOwner]
+    public async Task ca(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.crylinks, UserAccount.cryfile);
+    }
+
+    [Command("slapadd")]
+    [RequireOwner]
+    public async Task slapadd(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.slaplinks, UserAccount.slapfile);
+    }
+
+    [Command("punchadd")]
+    [RequireOwner]
+    public async Task punchadd(string url)
+    {
+      await Context.Channel.SendMessageAsync(url + " has been added to json");
+      UserAccount.CreateLinkactnew(url, UserAccount.punchlinks, UserAccount.punchfile);
+    }
+    [Command("Hug")]
+    public async Task Hug([Remainder] SocketUser user)
+    {
+      
+      sorted = UserAccount.huglinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string Hugpost = stringList[index];
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(string.Format("__{0}__ Hugged __{1}__", Context.User.Username, user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(Hugpost);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+     
+    }
+        [Command("fuck")]
+        public async Task Fuck([Remainder] SocketUser user)
+        {
+            
+            sorted = UserAccount.fucklinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>)(o => o.Url)).ToList<LinksAction>();
+            List<string> stringList = new List<string>();
+            foreach (LinksAction linksAction in sorted)
+            {
+                string str = linksAction.Url.ToString();
+                stringList.Add(str);
+            }
+            rand = new Random();
+            int index = rand.Next(stringList.Count);
+            string imageUrl = stringList[index];
+            EmbedBuilder embedBuilder = new EmbedBuilder();
+            embedBuilder.WithTitle(string.Format("__{0}__ wants to fuck __{1}__", Context.User.Username, user));
+            embedBuilder.WithCurrentTimestamp();
+            embedBuilder.WithImageUrl(imageUrl);
+            embedBuilder.WithColor(Color.Purple);
+             await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+            await Task.Delay(1);
         }
     }
 }

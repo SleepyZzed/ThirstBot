@@ -165,21 +165,18 @@ namespace ThirstBotV2
         private async Task HandleMessageAsync(SocketMessage socketMessage)
         {
             //Console.WriteLine(socketMessage.Content);
-            string prefix = "#";
-            ulong autajj = 242730576195354624;
-            
-            var argPos = 0;
             var userMessage = socketMessage as SocketUserMessage;
-            if(userMessage.Author.Id == autajj)
-            {
-               await userMessage.DeleteAsync();
-            }
+            var context = new SocketCommandContext(_client, userMessage);
+            
+            string prefix = "~";
+            var argPos = 0;
+
+            if (userMessage is null)
+            return;
            
             if (userMessage.Author.IsBot) 
                return;
             
-
-            var context = new SocketCommandContext(_client, userMessage);
             if (userMessage is null)
                 return;
             if (context.User.IsBot)
@@ -191,7 +188,7 @@ namespace ThirstBotV2
                 return;
 
 
-           
+           var result = await _cmdService.ExecuteAsync(context, argPos, _services);
 
         }
 
