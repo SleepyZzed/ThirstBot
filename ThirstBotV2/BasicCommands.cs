@@ -162,8 +162,17 @@ Whether you are looking for a place to make friends or just looking to thirst ov
     }
     [Command("Hug")]
     public async Task Hug([Remainder] SocketUser user)
-    {
+    { EmbedBuilder embedBuilder = new EmbedBuilder();
+      if(Context.User.Id == user.Id)
+      {
       
+      embedBuilder.WithTitle("Lonely Fuck");
+      embedBuilder.WithCurrentTimestamp();
+      
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
       sorted = UserAccount.huglinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
       List<string> stringList = new List<string>();
       foreach (LinksAction linksAction in sorted)
@@ -174,18 +183,29 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       rand = new Random();
       int index = rand.Next(stringList.Count);
       string Hugpost = stringList[index];
-      EmbedBuilder embedBuilder = new EmbedBuilder();
+      //EmbedBuilder embedBuilder = new EmbedBuilder();
       embedBuilder.WithTitle(string.Format("__{0}__ Hugged __{1}__", Context.User.Username, user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(Hugpost);
       embedBuilder.WithColor(Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
      
     }
         [Command("fuck")]
         public async Task Fuck([Remainder] SocketUser user)
         {
-            
+            EmbedBuilder embedBuilder = new EmbedBuilder();
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle("Lonely Fuck");
+      embedBuilder.WithCurrentTimestamp();
+      
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
             sorted = UserAccount.fucklinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>)(o => o.Url)).ToList<LinksAction>();
             List<string> stringList = new List<string>();
             foreach (LinksAction linksAction in sorted)
@@ -196,13 +216,240 @@ Whether you are looking for a place to make friends or just looking to thirst ov
             rand = new Random();
             int index = rand.Next(stringList.Count);
             string imageUrl = stringList[index];
-            EmbedBuilder embedBuilder = new EmbedBuilder();
+            //EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.WithTitle(string.Format("__{0}__ wants to fuck __{1}__", Context.User.Username, user));
             embedBuilder.WithCurrentTimestamp();
             embedBuilder.WithImageUrl(imageUrl);
             embedBuilder.WithColor(Color.Purple);
-             await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+            await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
             await Task.Delay(1);
+      }
         }
+        [Command("kiss")]
+    public async Task Kiss([Remainder] SocketUser user)
+    {
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle("Lonely Fuck");
+      embedBuilder.WithCurrentTimestamp();
+      
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
+      sorted = UserAccount.kisslinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      //EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(string.Format("__{0}__ kissed __{1}__",Context.User.Username, user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+    }
+    }
+    [Command("Pat")]
+    public async Task pat([Remainder] SocketUser user)
+    {
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle("Lonely Fuck");
+      embedBuilder.WithCurrentTimestamp();
+      
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
+      sorted = UserAccount.patlinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      //EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(string.Format("__{0}__ Pats __{1}__",  Context.User.Username,  user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+      }
+    }
+
+    [Command("Feed")]
+    public async Task feed([Remainder] SocketUser user)
+    {
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle("Fat fuck");
+      embedBuilder.WithCurrentTimestamp();
+      
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
+      sorted = UserAccount.feedlinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      //EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(string.Format("__{0}__ Fed __{1}__",  Context.User.Username,  user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+      }
+    }
+
+    [Command("Succ")]
+    public async Task Succ([Remainder] SocketUser user)
+    {
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle("Lonely Fuck");
+      embedBuilder.WithCurrentTimestamp();
+      
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
+      sorted = UserAccount.succlinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      //EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(string.Format("__{0}__ :flushed: __{1}__",  Context.User.Username,  user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+      }
+    }
+
+    [Command("cry")]
+    public async Task cry()
+    {
+      
+      sorted = UserAccount.crylinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(Context.User.Username + " is crying");
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+    }
+
+    [Command("slap")]
+    public async Task slap([Remainder] SocketGuildUser user)
+    {
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      sorted = UserAccount.slaplinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle(string.Format("{0} Slapped themselves",  Context.User.Username));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
+      
+      //EmbedBuilder embedBuilder = new EmbedBuilder();
+      embedBuilder.WithTitle(string.Format("{0} Slapped {1}",  Context.User.Username,  user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+    }
+    }
+
+    [Command("punch")]
+    public async Task punch([Remainder] SocketGuildUser user)
+    {
+      EmbedBuilder embedBuilder = new EmbedBuilder();
+      sorted = UserAccount.punchlinks.OrderByDescending<LinksAction, string>((Func<LinksAction, string>) (o => o.Url)).ToList<LinksAction>();
+      List<string> stringList = new List<string>();
+      foreach (LinksAction linksAction in sorted)
+      {
+        string str = linksAction.Url.ToString();
+        stringList.Add(str);
+      }
+      rand = new Random();
+      int index = rand.Next(stringList.Count);
+      string imageUrl = stringList[index];
+      if(Context.User.Id == user.Id)
+      {
+      
+      embedBuilder.WithTitle(string.Format("{0} Punched themselves",  Context.User.Username));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      }
+      else{
+      
+      embedBuilder.WithTitle(string.Format("{0} Punched {1}",  Context.User.Username,  user));
+      embedBuilder.WithCurrentTimestamp();
+      embedBuilder.WithImageUrl(imageUrl);
+      embedBuilder.WithColor(Color.Purple);
+      await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
+      await Task.Delay(3);
+      }
+    }
     }
 }
