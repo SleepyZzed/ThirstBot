@@ -181,8 +181,66 @@ namespace ThirstBotV2
                 return;
             if (context.User.IsBot)
                 return;
-
-          
+            
+            if(userMessage.Author.Id == 242730576195354624 && userMessage.Channel.Id == 617205518444003364)
+            {
+                await userMessage.DeleteAsync();
+            }
+            if (userMessage.Channel.GetType() == typeof (SocketDMChannel))
+            {
+        ulong zid;
+        ulong id;
+         EmbedBuilder embedBuilder = new EmbedBuilder();
+        if (userMessage.Content.ToLower().StartsWith("confess"))
+            {
+            zid = 485512961000210433;
+            
+            string str1 = userMessage.ToString();
+            string str2 = "__";
+            embedBuilder.WithTitle("<:damnson:601641217322909706>__**Confession: Sent by Anon User**__<:damnson:601641217322909706>");
+            embedBuilder.WithDescription(str2 + str1.Remove(0, 7) + str2);
+            embedBuilder.WithCurrentTimestamp();
+            embedBuilder.WithFooter("Dm me Confess <Follwed by confession> to make an anonymous confession");
+            embedBuilder.WithColor(Color.Purple);
+            await _client.GetGuild(595663383777247297UL).GetTextChannel(624175859690897408UL).SendMessageAsync("", false, embedBuilder.Build());
+            id = userMessage.Author.Id;
+            await _client.GetUser(id).SendMessageAsync("<:smileyheart:601641156866080771><:smileyheart:601641156866080771><:smileyheart:601641156866080771>Confession Sent<:smileyheart:601641156866080771><:smileyheart:601641156866080771><:smileyheart:601641156866080771>", false, (Embed) null, (RequestOptions) null);
+            await _client.GetUser(zid).SendMessageAsync("confession sent in by: " + id.ToString() + " " + str1);
+            }
+            if (userMessage.Content.ToLower().StartsWith("sa"))
+            {
+            zid = 485512961000210433;
+            
+            string str1 = userMessage.ToString();
+            string str2 = "__";
+            embedBuilder.WithTitle("<:damnson:601641217322909706>__**Secret Admirer: Sent by Anon User**__<:damnson:601641217322909706>");
+            embedBuilder.WithDescription(str2 + str1.Remove(0, 2) + str2);
+            embedBuilder.WithCurrentTimestamp();
+            embedBuilder.WithFooter("Dm me sa <Follwed by a name> to make an anonymous secret admirer post");
+            embedBuilder.WithColor(Color.Purple);
+            await _client.GetGuild(595663383777247297UL).GetTextChannel(665566408356265996).SendMessageAsync("", false, embedBuilder.Build());
+            id = userMessage.Author.Id;
+            await _client.GetUser(id).SendMessageAsync("<:smileyheart:601641156866080771><:smileyheart:601641156866080771><:smileyheart:601641156866080771>Secret Admirer sent Sent<:smileyheart:601641156866080771><:smileyheart:601641156866080771><:smileyheart:601641156866080771>", false, (Embed) null, (RequestOptions) null);
+            await _client.GetUser(zid).SendMessageAsync("sa sent in by: " + id.ToString() + " " + str1);
+            }
+            if (userMessage.Content.ToLower().Contains("verify") && userMessage.Attachments.Any<Attachment>())
+            {
+            ulong id1 = userMessage.Author.Id;
+            string mention = userMessage.Author.Mention;
+            string url = userMessage.Attachments.ElementAt<Attachment>(0).Url;
+            
+            embedBuilder.WithTitle("Verification");
+            embedBuilder.WithCurrentTimestamp();
+            embedBuilder.WithDescription("sent by" + mention + " (" + userMessage.Author.Username + ")");
+            embedBuilder.WithFooter("DM " + userMessage.Author.Mention + " if image is sketchty");
+            embedBuilder.WithImageUrl(url);
+            embedBuilder.WithColor(Color.Purple);
+            await _client.GetUser(id1).SendMessageAsync("<:smileyheart:601641156866080771><:smileyheart:601641156866080771><:smileyheart:601641156866080771>Verification Sent<:smileyheart:601641156866080771><:smileyheart:601641156866080771><:smileyheart:601641156866080771>", false, (Embed) null, (RequestOptions) null);
+            await _client.GetGuild(595663383777247297UL).GetTextChannel(624185396556857346UL).SendMessageAsync("", false, embedBuilder.Build());
+            await Task.Delay(1);
+            
+            }
+        }
 
             if (!userMessage.HasStringPrefix(prefix, ref argPos))
                 return;
