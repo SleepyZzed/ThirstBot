@@ -38,7 +38,7 @@ namespace ThirstBotV2
             switch (result)
             {
                 case 1:
-                    string ThirstBot = "NjQwMjMxNjQyOTc1MzA1Nzg5.Xb20RA.kB8OWEYANdPuJNLij656N5o5oXg";
+                    string ThirstBot = "NzIzNDEyOTg0MzY5Nzc0NjAy.XuxQ3g.DGwCAaY3zJsIljk3c_1qJXUrQ5k";
                     Global.Ysmirr = ThirstBot;
                     break;
                 case 2:
