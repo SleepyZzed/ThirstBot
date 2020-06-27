@@ -459,38 +459,33 @@ Whether you are looking for a place to make friends or just looking to thirst ov
     public async Task Br([Remainder] SocketGuildUser user)
     {
             string url = user.GetAvatarUrl(ImageFormat.Auto, 256);
-            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png"))
+            if (File.Exists("Resources/newimage.png"))
             {
-                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png");
+                File.Delete("Resources/newimage.png");
             }
-            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png"))
+            if (File.Exists("Resources/Img4.png"))
             {
-                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+                File.Delete("Resources/Img4.png");
             }
             
             WebClient webClient = new WebClient();
-            if(url.Contains("gif"))
-            {
-                webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.gif");
-            }
-            else
-            {
-                webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
-            }
+            
+            webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "Resources/Img4.png");
+            
             
             //webClient.DownloadFileAsync(new Uri(user.GetAvatarUrl(ImageFormat.Auto, 256)), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
             webClient.Dispose();
 
-            string image1 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png";
-            string image2 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img12.png";
+            string image1 = "Resources/Img4.png";
+            string image2 = "Resources/Img12.png";
 
             System.Drawing.Image canvas = Bitmap.FromFile(image1);
             Graphics gra = Graphics.FromImage(canvas);
             Bitmap smallImg = new Bitmap(image2);
             gra.DrawImage(smallImg, new Point(0, 234));
             
-            canvas.Save("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png", System.Drawing.Imaging.ImageFormat.Png);
-            await Context.Channel.SendFileAsync("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png");
+            canvas.Save("Resources/newimage.png", System.Drawing.Imaging.ImageFormat.Png);
+            await Context.Channel.SendFileAsync("Resources/newimage.png");
             smallImg.Dispose();
             gra.Dispose();
             canvas.Dispose();
@@ -499,34 +494,34 @@ Whether you are looking for a place to make friends or just looking to thirst ov
         public async Task Gay([Remainder] SocketGuildUser user)
         {
             string url = user.GetAvatarUrl(ImageFormat.Auto, 256);
-            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png"))
+            if (File.Exists("Resources/newimagePride.png"))
             {
-                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png");
+                File.Delete("Resources/newimagePride.png");
             }
-            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png"))
+            if (File.Exists("Resources/Img4.png"))
             {
-                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+                File.Delete("Resources/Img4.png");
             }
 
             WebClient webClient = new WebClient();
             
             
-            webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "Resources/Img4.png");
             
 
             //webClient.DownloadFileAsync(new Uri(user.GetAvatarUrl(ImageFormat.Auto, 256)), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
             webClient.Dispose();
 
-            string image1 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png";
-            string image2 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/pride.png";
+            string image1 = "Resources/Img4.png";
+            string image2 = "Resources/pride.png";
 
             System.Drawing.Image canvas = Bitmap.FromFile(image1);
             Graphics gra = Graphics.FromImage(canvas);
             Bitmap smallImg = new Bitmap(image2);
             gra.DrawImage(smallImg, new Point(0, 0));
 
-            canvas.Save("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png", System.Drawing.Imaging.ImageFormat.Png);
-            await Context.Channel.SendFileAsync("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png");
+            canvas.Save("Resources/newimagePride.png", System.Drawing.Imaging.ImageFormat.Png);
+            await Context.Channel.SendFileAsync("Resources/newimagePride.png");
             smallImg.Dispose();
             gra.Dispose();
             canvas.Dispose();
