@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using ThirstBotV2.Core.UserProfiles;
-
+using System.Net;
+using System.Drawing;
+using System.IO;
 
 namespace ThirstBotV2
 {
@@ -16,6 +18,8 @@ namespace ThirstBotV2
         private LinksAction linkact = new LinksAction();
         private List<LinksAction> sorted;
         private Random rand;
+
+        public static string gog = "https://www.google.com";
 
         [Command("userinfo")]
         [Summary
@@ -40,7 +44,7 @@ namespace ThirstBotV2
 
             builder.WithImageUrl(user.GetAvatarUrl());
 
-            builder.WithColor(Color.Red);
+            builder.WithColor(Discord.Color.Red);
             await Context.Channel.SendMessageAsync("", false, builder.Build());
             await Task.Delay(1);
         }
@@ -169,7 +173,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle("Lonely Fuck");
       embedBuilder.WithCurrentTimestamp();
       
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -187,7 +191,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("__{0}__ Hugged __{1}__", Context.User.Username, user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(Hugpost);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
      
@@ -202,7 +206,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle("Lonely Fuck");
       embedBuilder.WithCurrentTimestamp();
       
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -220,7 +224,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
             embedBuilder.WithTitle(string.Format("__{0}__ wants to fuck __{1}__", Context.User.Username, user));
             embedBuilder.WithCurrentTimestamp();
             embedBuilder.WithImageUrl(imageUrl);
-            embedBuilder.WithColor(Color.Purple);
+            embedBuilder.WithColor(Discord.Color.Purple);
             await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
             await Task.Delay(1);
       }
@@ -235,7 +239,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle("Lonely Fuck");
       embedBuilder.WithCurrentTimestamp();
       
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -253,7 +257,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("__{0}__ kissed __{1}__",Context.User.Username, user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
     }
@@ -268,7 +272,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle("Lonely Fuck");
       embedBuilder.WithCurrentTimestamp();
       
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -286,7 +290,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("__{0}__ Pats __{1}__",  Context.User.Username,  user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
       }
@@ -302,7 +306,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle("Fat fuck");
       embedBuilder.WithCurrentTimestamp();
       
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -320,7 +324,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("__{0}__ Fed __{1}__",  Context.User.Username,  user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
       }
@@ -336,7 +340,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle("Lonely Fuck");
       embedBuilder.WithCurrentTimestamp();
       
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -354,7 +358,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("__{0}__ :flushed: __{1}__",  Context.User.Username,  user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
       }
@@ -378,7 +382,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(Context.User.Username + " is crying");
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
     }
@@ -403,7 +407,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("{0} Slapped themselves",  Context.User.Username));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -412,7 +416,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("{0} Slapped {1}",  Context.User.Username,  user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
     }
@@ -438,7 +442,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("{0} Punched themselves",  Context.User.Username));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       }
       else{
@@ -446,10 +450,52 @@ Whether you are looking for a place to make friends or just looking to thirst ov
       embedBuilder.WithTitle(string.Format("{0} Punched {1}",  Context.User.Username,  user));
       embedBuilder.WithCurrentTimestamp();
       embedBuilder.WithImageUrl(imageUrl);
-      embedBuilder.WithColor(Color.Purple);
+      embedBuilder.WithColor(Discord.Color.Purple);
       await Context.Channel.SendMessageAsync("", false, embedBuilder.Build());
       await Task.Delay(3);
       }
     }
+    [Command("br")]
+    public async Task Br([Remainder] SocketGuildUser user)
+    {
+            string url = user.GetAvatarUrl(ImageFormat.Auto, 256);
+            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png"))
+            {
+                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png");
+            }
+            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png"))
+            {
+                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            }
+            
+            WebClient webClient = new WebClient();
+            if(url.Contains("gif"))
+            {
+                webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.gif");
+            }
+            else
+            {
+                webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            }
+            
+            //webClient.DownloadFileAsync(new Uri(user.GetAvatarUrl(ImageFormat.Auto, 256)), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            webClient.Dispose();
+
+            string image1 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png";
+            string image2 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img12.png";
+
+            System.Drawing.Image canvas = Bitmap.FromFile(image1);
+            Graphics gra = Graphics.FromImage(canvas);
+            Bitmap smallImg = new Bitmap(image2);
+            gra.DrawImage(smallImg, new Point(0, 234));
+            
+            canvas.Save("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png", System.Drawing.Imaging.ImageFormat.Png);
+            await Context.Channel.SendFileAsync("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimage.png");
+            smallImg.Dispose();
+            gra.Dispose();
+            canvas.Dispose();
+        }
+
+        
     }
 }

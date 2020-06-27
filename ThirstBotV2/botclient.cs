@@ -42,7 +42,7 @@ namespace ThirstBotV2
                     Global.Ysmirr = ThirstBot;
                     break;
                 case 2:
-                    string ThirstBot1 = "NTkzNjY3MzEwNDY4NzI2Nzk0.Xjsryw.S_fTS7afVU887Jj0SDL7geLReC8";
+                    string ThirstBot1 = "NzI2Mjk3NjA3MDE3NTk1MTYy.XvbPZA.uPQ5St5jmx7T4xoe4DxXYV6eW_k";
                     Global.Ysmirr = ThirstBot1;
 
                     break;
