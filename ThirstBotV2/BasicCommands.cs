@@ -495,7 +495,43 @@ Whether you are looking for a place to make friends or just looking to thirst ov
             gra.Dispose();
             canvas.Dispose();
         }
+        [Command("gay")]
+        public async Task Gay([Remainder] SocketGuildUser user)
+        {
+            string url = user.GetAvatarUrl(ImageFormat.Auto, 256);
+            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png"))
+            {
+                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png");
+            }
+            if (File.Exists("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png"))
+            {
+                File.Delete("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            }
 
-        
+            WebClient webClient = new WebClient();
+            
+            
+            webClient.DownloadFile(user.GetAvatarUrl(ImageFormat.Auto, 256), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            
+
+            //webClient.DownloadFileAsync(new Uri(user.GetAvatarUrl(ImageFormat.Auto, 256)), "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png");
+            webClient.Dispose();
+
+            string image1 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/Img4.png";
+            string image2 = "D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/pride.png";
+
+            System.Drawing.Image canvas = Bitmap.FromFile(image1);
+            Graphics gra = Graphics.FromImage(canvas);
+            Bitmap smallImg = new Bitmap(image2);
+            gra.DrawImage(smallImg, new Point(0, 0));
+
+            canvas.Save("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png", System.Drawing.Imaging.ImageFormat.Png);
+            await Context.Channel.SendFileAsync("D:/Ysmirr/ThirstBot/ThirstBotV2/Resources/newimagePride.png");
+            smallImg.Dispose();
+            gra.Dispose();
+            canvas.Dispose();
+        }
+
+
     }
 }
