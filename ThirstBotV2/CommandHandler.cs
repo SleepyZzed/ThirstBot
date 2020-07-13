@@ -173,7 +173,25 @@ namespace ThirstBotV2
 
             if (userMessage is null)
             return;
-           
+            
+            if(userMessage.ToString().ToLower().StartsWith("dm me") && userMessage.ToString().ToLower().Contains("nudes") )
+            {   if(userMessage.Channel.Id == 685800338879414286)
+            {
+                return;
+            }   
+               
+                var ChannelID = context.Guild.GetTextChannel(userMessage.Id);
+                await userMessage.DeleteAsync();
+                await userMessage.Author.SendMessageAsync("Banned for possibily being a bot, dm an admin to dispute this ban");
+                await context.Guild.AddBanAsync(userMessage.Author);
+                return;
+            }
+            if(userMessage.Author.Id == 242730576195354624 && userMessage.Channel.Id == 617205518444003364)
+            {
+                await userMessage.DeleteAsync();
+                return;
+            }
+
             if (userMessage.Author.IsBot) 
                return;
             
@@ -182,15 +200,12 @@ namespace ThirstBotV2
             if (context.User.IsBot)
                 return;
             
-            if(userMessage.Author.Id == 242730576195354624 && userMessage.Channel.Id == 617205518444003364)
-            {
-                await userMessage.DeleteAsync();
-            }
+           
             if (userMessage.Channel.GetType() == typeof (SocketDMChannel))
             {
-        ulong zid;
-        ulong id;
-         EmbedBuilder embedBuilder = new EmbedBuilder();
+                ulong zid;
+                ulong id;
+                EmbedBuilder embedBuilder = new EmbedBuilder();
         if (userMessage.Content.ToLower().StartsWith("confess"))
             {
             zid = 485512961000210433;
