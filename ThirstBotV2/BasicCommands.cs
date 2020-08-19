@@ -93,6 +93,37 @@ Whether you are looking for a place to make friends or just looking to thirst ov
 
             await Context.Channel.SendMessageAsync(embed: embed.Build());
         }
+        [Command("removeunderage")]
+        [RequireOwner]
+        public async Task RemoveUnderAge()
+        {
+            var guild = Context.Guild as IGuild;
+            var users = await guild.GetUsersAsync();
+
+            foreach (var user in users)
+            {
+                var u = user as IGuildUser;
+                var roles = u.RoleIds;
+                ulong underage = 601919400924282882;
+                var rlunderage = Context.Guild.Roles.FirstOrDefault(x => x.Name == "-18");
+
+                if (!u.IsBot && !u.IsWebhook)
+                {
+                    try
+                    {   if (roles.Contains(underage))
+                        {   await Context.Channel.SendMessageAsync("Removing underage members");
+                            await u.BanAsync();
+                            
+                        }
+                        
+                    }
+                    catch (Exception e)
+                    {
+                      await Context.Channel.SendMessageAsync(e.ToString());
+                    }
+                }
+            }
+        }
         [Command("hugadd")]
     [RequireOwner]
     public async Task addedHug(string url)
