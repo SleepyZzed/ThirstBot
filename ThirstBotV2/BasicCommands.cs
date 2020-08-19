@@ -99,7 +99,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
         {
             var guild = Context.Guild as IGuild;
             var users = await guild.GetUsersAsync();
-
+            await Context.Channel.SendMessageAsync("Removing underage members");
             foreach (var user in users)
             {
                 var u = user as IGuildUser;
