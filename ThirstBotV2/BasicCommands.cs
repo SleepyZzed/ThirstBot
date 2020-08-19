@@ -10,6 +10,11 @@ using ThirstBotV2.Core.UserProfiles;
 using System.Net;
 using System.Drawing;
 using System.IO;
+using WindowsInput;
+using WindowsInput.Native;
+
+
+
 
 namespace ThirstBotV2
 {
@@ -17,6 +22,8 @@ namespace ThirstBotV2
     { 
         private LinksAction linkact = new LinksAction();
         private List<LinksAction> sorted;
+
+        private InputSimulator input = new InputSimulator();
         private Random rand;
 
         public static string gog = "https://www.google.com";
@@ -48,6 +55,38 @@ namespace ThirstBotV2
             await Context.Channel.SendMessageAsync("", false, builder.Build());
             await Task.Delay(1);
         }
+        [Command ("GameMode")]
+        [RequireOwner]
+        public async Task gmode()
+        { 
+          if(Context.Client.Status != UserStatus.Online)
+          {
+            
+            await Context.Channel.SendMessageAsync("Game mode turned on");
+            await Context.Client.SetStatusAsync(UserStatus.Online);
+            return; 
+          }
+          if(Context.Client.Status == UserStatus.Online){
+            await Context.Channel.SendMessageAsync("Game mode already active, deactivating game mode");
+            await Context.Client.SetStatusAsync(UserStatus.DoNotDisturb);
+            
+            return;
+          }
+        }
+    [Command("pressW")]
+    public async Task pressW()
+    {
+     if (Context.Client.Status == UserStatus.Online)
+      {
+        input.Keyboard.KeyDown(VirtualKeyCode.VK_W);
+        input.Keyboard.Sleep(1000);
+        input.Keyboard.KeyUp(VirtualKeyCode.VK_W);
+        //await Context.Channel.SendMessageAsync("wORKD", false, (Embed) null, (RequestOptions) null);
+        await Context.Channel.SendMessageAsync("processed request");
+        Console.WriteLine($"processed keypress {VirtualKeyCode.VK_W}");
+      }
+      
+    }
         
         [Command("Ad")]
         public async Task Advert()
