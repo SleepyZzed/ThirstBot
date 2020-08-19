@@ -111,7 +111,7 @@ Whether you are looking for a place to make friends or just looking to thirst ov
                 {
                     try
                     {   if (roles.Contains(underage))
-                        {   await Context.Channel.SendMessageAsync("Removing underage members");
+                        {   
                             await u.BanAsync();
                             
                         }
