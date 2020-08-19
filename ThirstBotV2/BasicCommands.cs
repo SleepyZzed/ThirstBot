@@ -73,7 +73,7 @@ namespace ThirstBotV2
             return;
           }
         }
-    [Command("pressW")]
+    [Command("W")]
     public async Task pressW()
     {
      if (Context.Client.Status == UserStatus.Online)
