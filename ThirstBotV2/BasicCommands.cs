@@ -87,7 +87,77 @@ namespace ThirstBotV2
       }
       
     }
-        
+    [Command("A")]
+    public async Task pressA()
+    {
+     if (Context.Client.Status == UserStatus.Online)
+      {
+        input.Keyboard.KeyDown(VirtualKeyCode.VK_W);
+        input.Keyboard.Sleep(1000);
+        input.Keyboard.KeyUp(VirtualKeyCode.VK_W);
+        //await Context.Channel.SendMessageAsync("wORKD", false, (Embed) null, (RequestOptions) null);
+        await Context.Channel.SendMessageAsync("processed request");
+        Console.WriteLine($"processed keypress {VirtualKeyCode.VK_S}");
+      }
+      
+    }
+    [Command("s")]
+    public async Task pressS()
+    {
+     if (Context.Client.Status == UserStatus.Online)
+      {
+        input.Keyboard.KeyDown(VirtualKeyCode.VK_S);
+        input.Keyboard.Sleep(1000);
+        input.Keyboard.KeyUp(VirtualKeyCode.VK_S);
+        //await Context.Channel.SendMessageAsync("wORKD", false, (Embed) null, (RequestOptions) null);
+        await Context.Channel.SendMessageAsync("processed request");
+        Console.WriteLine($"processed keypress {VirtualKeyCode.VK_S}");
+      }
+      
+    }
+        [Command("D")]
+    public async Task pressD()
+    {
+     if (Context.Client.Status == UserStatus.Online)
+      {
+        input.Keyboard.KeyDown(VirtualKeyCode.VK_D);
+        input.Keyboard.Sleep(1000);
+        input.Keyboard.KeyUp(VirtualKeyCode.VK_D);
+        //await Context.Channel.SendMessageAsync("wORKD", false, (Embed) null, (RequestOptions) null);
+        await Context.Channel.SendMessageAsync("processed request");
+        Console.WriteLine($"processed keypress {VirtualKeyCode.VK_D}");
+      }
+      
+    }
+
+    [Command("z")]
+    public async Task pressZ()
+    {
+     if (Context.Client.Status == UserStatus.Online)
+      {
+        input.Keyboard.KeyDown(VirtualKeyCode.VK_Z);
+        input.Keyboard.Sleep(1000);
+        input.Keyboard.KeyUp(VirtualKeyCode.VK_Z);
+        //await Context.Channel.SendMessageAsync("wORKD", false, (Embed) null, (RequestOptions) null);
+        await Context.Channel.SendMessageAsync("processed request");
+        Console.WriteLine($"processed keypress {VirtualKeyCode.VK_Z}");
+      }
+      
+    }
+    [Command("X")]
+    public async Task pressX()
+    {
+     if (Context.Client.Status == UserStatus.Online)
+      {
+        input.Keyboard.KeyDown(VirtualKeyCode.VK_X);
+        input.Keyboard.Sleep(1000);
+        input.Keyboard.KeyUp(VirtualKeyCode.VK_X);
+        //await Context.Channel.SendMessageAsync("wORKD", false, (Embed) null, (RequestOptions) null);
+        await Context.Channel.SendMessageAsync("processed request");
+        Console.WriteLine($"processed keypress {VirtualKeyCode.VK_X}");
+      }
+      
+    }
         [Command("Ad")]
         public async Task Advert()
         {
