@@ -14,5 +14,7 @@ namespace ThirstBotV2
 
         internal static string useid { get; set; }
 
+        public static string token = "NzIzNDEyOTg0MzY5Nzc0NjAy.XuxQ1w.sov2slPHMf0zL2olGpFWT0ugyxw";
+
     }
 }

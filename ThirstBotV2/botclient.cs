@@ -39,11 +39,11 @@ namespace ThirstBotV2
             switch (result)
             {
                 case 1:
-                    string ThirstBot = "NzIzNDEyOTg0MzY5Nzc0NjAy.XuxQ3g.DGwCAaY3zJsIljk3c_1qJXUrQ5k";
+                    string ThirstBot = token.tkn;
                     Global.Ysmirr = ThirstBot;
                     break;
                 case 2:
-                    string ThirstBot1 = "NzI2Mjk3NjA3MDE3NTk1MTYy.XvbPZA.uPQ5St5jmx7T4xoe4DxXYV6eW_k";
+                    string ThirstBot1 = token.tkn1;
                     Global.Ysmirr = ThirstBot1;
 
                     break;
