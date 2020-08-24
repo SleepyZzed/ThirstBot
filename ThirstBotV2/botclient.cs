@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using System.Linq;
 
+
 namespace ThirstBotV2
 {
     public class botclient
@@ -59,26 +60,76 @@ namespace ThirstBotV2
             await _client.LoginAsync(TokenType.Bot, Global.Ysmirr);
 
             await _client.StartAsync();
-            _client.Log += LogAsync;
+           
 
             _services = SetupServices();
            
             var cmdHandler = new CommandHandler(_client, _cmdService, _services);
             await cmdHandler.InitializeAsync();
            
+            bool repeat = true;
+            while (repeat) 
+                {
+            Console.WriteLine("Would you like to exit? Log or issue a command?");
+            string response = Console.ReadLine().ToString();
+            if(response == "exit"){
 
+            
+            Environment.Exit(0);
+            
+            }
+
+            if(response == "log"){
+                
+                repeat = false;
+                _client.Log += LogAsync;
+                
+
+                
+            }
+            if(response == "command")
+            {   Console.WriteLine("I can send a message in the desired channel");
+                Console.WriteLine("Please enter the message or quit");
+                string msg = Console.ReadLine().ToString();
+                if(msg == "quit")
+                {
+                    repeat = false;
+                    _client.Log += LogAsync;
+                    
+                }
+                
+                
+                Console.WriteLine("Please enter the channel you would like to send the message to");
+                string chnl = Console.ReadLine().ToString();
+             
+
+                 ulong ChannelToSend=  _client.GetGuild(595663383777247297UL).Channels.FirstOrDefault(x => x.Name.Contains(chnl)).Id;
+                var channel = _client.GetGuild(595663383777247297UL).GetChannel(ChannelToSend) as SocketTextChannel;
+                Console.WriteLine(channel.Name);
+                await channel.SendMessageAsync(msg);
+
+                
+                repeat = true;
+            }
+                }
+
+
+            
             await Task.Delay(-1);
 
         }
 
-
-        private Task LogAsync(LogMessage logMessage)
+      
+       private Task LogAsync(LogMessage logMessage)
         {
+            
+            
             Console.WriteLine(logMessage.Message);
+                
+            
+           return Task.CompletedTask;
 
-            return Task.CompletedTask;
-
-        }
+       }
 
 
 
