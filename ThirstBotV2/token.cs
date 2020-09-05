@@ -8,7 +8,9 @@ namespace ThirstBotV2
     {
         
 
-        
+        public static string tkn = "";
+
+        public static string tkn1 = "";
 
     }
 }

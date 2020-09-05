@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/zed/Documents/ThirstBot/ThirstBotV2/ThirstBotV2.csproj": {}
+    "/home/zed/Desktop/ThirstBot/ThirstBotV2/ThirstBotV2.csproj": {}
   },
   "projects": {
-    "/home/zed/Documents/ThirstBot/ThirstBotV2/ThirstBotV2.csproj": {
+    "/home/zed/Desktop/ThirstBot/ThirstBotV2/ThirstBotV2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/zed/Documents/ThirstBot/ThirstBotV2/ThirstBotV2.csproj",
+        "projectUniqueName": "/home/zed/Desktop/ThirstBot/ThirstBotV2/ThirstBotV2.csproj",
         "projectName": "ThirstBotV2",
-        "projectPath": "/home/zed/Documents/ThirstBot/ThirstBotV2/ThirstBotV2.csproj",
+        "projectPath": "/home/zed/Desktop/ThirstBot/ThirstBotV2/ThirstBotV2.csproj",
         "packagesPath": "/home/zed/.nuget/packages/",
-        "outputPath": "/home/zed/Documents/ThirstBot/ThirstBotV2/obj/",
+        "outputPath": "/home/zed/Desktop/ThirstBot/ThirstBotV2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/zed/.nuget/NuGet/NuGet.Config"
