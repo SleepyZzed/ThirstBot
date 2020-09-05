@@ -186,6 +186,22 @@ namespace ThirstBotV2
                 await context.Guild.AddBanAsync(userMessage.Author);
                 return;
             }
+             if(userMessage.ToString().ToLower().Contains("https://ethway.io/") && userMessage.ToString().ToLower().Contains("crypto") )
+            { 
+                var ChannelID = context.Guild.GetTextChannel(userMessage.Id);
+                await userMessage.DeleteAsync();
+                await userMessage.Author.SendMessageAsync("Banned for possibily being a bot, dm an admin to dispute this ban");
+                await context.Guild.AddBanAsync(userMessage.Author);
+                return;
+            }
+            if(userMessage.ToString().ToLower().StartsWith("Dm me guys if") && userMessage.ToString().ToLower().Contains("nudes") )
+            { 
+                var ChannelID = context.Guild.GetTextChannel(userMessage.Id);
+                await userMessage.DeleteAsync();
+                await userMessage.Author.SendMessageAsync("Banned for possibily being a bot, dm an admin to dispute this ban");
+                await context.Guild.AddBanAsync(userMessage.Author);
+                return;
+            }
             if(userMessage.Author.Id == 242730576195354624 && userMessage.Channel.Id == 617205518444003364)
             {
                 await userMessage.DeleteAsync();
