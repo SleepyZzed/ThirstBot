@@ -6,6 +6,10 @@ using Discord.Commands;
 using System.Threading.Tasks;
 using System.Reflection;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using Reddit;
+using Reddit.Controllers;
+using Reddit.Controllers.EventArgs;
 
 namespace ThirstBotV2
 {
@@ -15,8 +19,12 @@ namespace ThirstBotV2
         private readonly CommandService _cmdService;
         private readonly IServiceProvider _services;
         public int usersNum = 0;
- 
-     
+        RedditClient reddit = new RedditClient(appId: "Njwry98Y6f2XDw", appSecret: "XC5_xPbhepS9-Ik2m7igxtbcWuY", refreshToken: "375040453388-RJTZYE01pUR4q1TeklbvpPYs2Ng");
+       
+
+        EmbedBuilder embedBuilder { get; set; }
+        
+
         public CommandHandler(DiscordSocketClient client, CommandService cmdService, IServiceProvider services)
         {
             _client = client;
@@ -32,11 +40,13 @@ namespace ThirstBotV2
             _client.MessageReceived += HandleMessageAsync;
             _client.UserJoined += AnnounceUserJoined;
             _client.UserLeft += AnnounceUserLeft;
+            
+
 
 
             await _client.SetGameAsync("Watching New Members", null, ActivityType.Watching);
             await _client.SetStatusAsync(UserStatus.DoNotDisturb);
-
+            //chnl1 = _client.GetGuild(595663383777247297).GetTextChannel(640239748740546592);
 
 
 
@@ -94,6 +104,9 @@ namespace ThirstBotV2
 
 
         }
+
+        
+        
         public async Task AnnounceUserLeft(SocketGuildUser user)
         {
             SocketGuild socketGuild = _client.GetGuild(595663383777247297);
@@ -167,6 +180,11 @@ namespace ThirstBotV2
             //Console.WriteLine(socketMessage.Content);
             var userMessage = socketMessage as SocketUserMessage;
             var context = new SocketCommandContext(_client, userMessage);
+
+
+
+        
+                
             
             string prefix = "~";
             var argPos = 0;
@@ -272,6 +290,7 @@ namespace ThirstBotV2
             
             }
         }
+            
 
             if (!userMessage.HasStringPrefix(prefix, ref argPos))
                 return;
@@ -283,7 +302,11 @@ namespace ThirstBotV2
 
         private Task LogAsync(LogMessage logMessage)
         {
+           
+           
+            
             Console.WriteLine(logMessage.Message);
+
             return Task.CompletedTask;
 
         }

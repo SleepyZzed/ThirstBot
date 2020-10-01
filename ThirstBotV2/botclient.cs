@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using System.Linq;
-
+using Discord.Addons.Interactive;
 
 namespace ThirstBotV2
 {
@@ -92,6 +92,7 @@ namespace ThirstBotV2
                 => new ServiceCollection()
                     .AddSingleton(_client)
                     .AddSingleton(_cmdService)
+                    .AddSingleton<InteractiveService>()
                     .BuildServiceProvider();
 
     }

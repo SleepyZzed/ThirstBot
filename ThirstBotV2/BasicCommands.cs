@@ -12,9 +12,8 @@ using System.Drawing;
 using System.IO;
 using WindowsInput;
 using WindowsInput.Native;
-
-
-
+using Discord.Addons.Interactive;
+using System.Dynamic;
 
 namespace ThirstBotV2
 {
@@ -233,6 +232,126 @@ Whether you are looking for a place to make friends or just looking to thirst ov
                 }
             }
         }
+        public class SampleModule : InteractiveBase
+        {
+            [Command("role", RunMode = RunMode.Async)]
+
+            public async Task AddRole(SocketGuildUser user, [Remainder] string rolename)
+            {
+                var guild = Context.Guild as IGuild;
+                var cmdUser = Context.User as SocketGuildUser;
+                //var users = await guild.GetUsersAsync();
+                EmbedBuilder embed = new EmbedBuilder();
+
+                //var u = user as IGuildUser;
+                // var roles = u.RoleIds;
+
+                var rlassign = Context.Guild.Roles.FirstOrDefault(x => x.Name.ToLower() == rolename);
+                var cmdRole = (cmdUser as IGuildUser).Guild.Roles.FirstOrDefault(x => x.Name == "Gate Keepers");
+                if (!cmdUser.Roles.Contains(cmdRole))
+                {
+                    embed.WithDescription("error you do not have permission to do this");
+                    embed.WithCurrentTimestamp();
+
+                    embed.WithColor(Discord.Color.Purple);
+                    var rpl111 = await Context.Channel.SendMessageAsync(embed: embed.Build());
+                    await Task.Delay(9000);
+                    await rpl111.DeleteAsync();
+                    return;
+                }
+                if (rlassign.Name.ToLower() == "gate keepers" || rlassign.Name.ToLower() == "owner" || rlassign.Name.ToLower() == "founders" || rlassign.Name.ToLower() == "sexgod" || rlassign.Name.ToLower() == "zed's bots" || rlassign.Name.ToLower() == "nitro booster")
+                {
+                    embed.WithDescription("you cannot give users this role");
+                    embed.WithCurrentTimestamp();
+
+                    embed.WithColor(Discord.Color.Purple);
+                    var rpl11 = await Context.Channel.SendMessageAsync(embed: embed.Build());
+                    await Task.Delay(9000);
+                    await rpl11.DeleteAsync();
+                    return;
+
+                }
+                if (rlassign == null)
+                {
+                    embed.WithDescription("role does not exist");
+                    embed.WithCurrentTimestamp();
+
+                    embed.WithColor(Discord.Color.Purple);
+                    var rpl = await Context.Channel.SendMessageAsync(embed: embed.Build());
+                    await Task.Delay(9000);
+                    await rpl.DeleteAsync();
+                    return;
+
+                }
+                if (user.Roles.Contains(rlassign))
+                {
+                    embed.WithDescription("user already has this role, would you like to remove it?");
+                    embed.WithCurrentTimestamp();
+
+                    embed.WithColor(Discord.Color.Purple);
+                    var rply = await ReplyAsync(embed: embed.Build());
+                    var response = await NextMessageAsync();
+                    if (response != null)
+                    {
+                        if (response.ToString().ToLower().Trim() == "yes" || response.ToString().ToLower().Trim() == "y")
+                        {
+                            embed.WithDescription("role removed");
+                            embed.WithCurrentTimestamp();
+
+                            embed.WithColor(Discord.Color.Purple);
+                            var rply1 = await ReplyAsync(embed: embed.Build());
+                            await user.RemoveRoleAsync(rlassign);
+                            await Task.Delay(9000);
+                            await rply1.DeleteAsync();
+                        }
+                        else {
+                            embed.WithDescription("role not removed, to remove a role use the ~role command and enter yes when prompted to remove role");
+                            embed.WithCurrentTimestamp();
+
+                            embed.WithColor(Discord.Color.Purple);
+                            var msgsend = await Context.Channel.SendMessageAsync(embed: embed.Build());
+                            await Task.Delay(9000);
+                            await msgsend.DeleteAsync();
+
+                        
+                        }
+                    }
+
+                    else
+                    {
+                        embed.WithDescription("You did not reply before the timeout");
+                        embed.WithCurrentTimestamp();
+
+                        embed.WithColor(Discord.Color.Purple);
+                        await ReplyAsync(embed: embed.Build());
+                        await rply.DeleteAsync();
+                    }
+
+
+
+                }
+
+                else
+                {   embed.WithDescription("Role Added");
+                    embed.WithCurrentTimestamp();
+                    await user.AddRoleAsync(rlassign);
+                   var rldd = await Context.Channel.SendMessageAsync(embed: embed.Build());
+                   await rldd.DeleteAsync();
+
+                }
+
+
+            }
+        }
+        [Command("Invite")]
+        
+        public async Task InviteGenerator()
+        {   
+            var invites = await Context.Guild.GetInvitesAsync();
+
+            await ReplyAsync("Share it with your friends! " + invites.Select(x => x.Url).FirstOrDefault());
+        }
+        
         [Command("hugadd")]
     [RequireOwner]
     public async Task addedHug(string url)

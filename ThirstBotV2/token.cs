@@ -8,9 +8,9 @@ namespace ThirstBotV2
     {
         
 
-        public static string tkn = "";
+        public static string tkn = "NzIzNDEyOTg0MzY5Nzc0NjAy.XuxQ1w.wc69MYd_ZO86qET26ZsnFffLZm4";
 
-        public static string tkn1 = "";
+        public static string tkn1 = "NzIzNDEyOTg0MzY5Nzc0NjAy.XuxQ1w.wc69MYd_ZO86qET26ZsnFffLZm4";
 
     }
 }
